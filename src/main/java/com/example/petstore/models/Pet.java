@@ -1,4 +1,4 @@
-package com.example.petstore;
+package com.example.petstore.models;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -21,6 +21,16 @@ public class Pet {
 
 	@JsonProperty("pet_age")
 	private Integer petAge;
+
+	public Pet() {
+	}
+
+	public Pet(Integer petId, String petType, String petName, Integer petAge) {
+		this.petId = petId;
+		this.petType = petType;
+		this.petName = petName;
+		this.petAge = petAge;
+	}
 
 	public Integer getPetId() {
 		return petId;
