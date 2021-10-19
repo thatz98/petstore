@@ -1,4 +1,6 @@
-package com.example.petstore.models;
+package com.example.petstore.datastore;
+
+import com.example.petstore.models.Pet;
 
 import java.util.ArrayList;
 import java.util.List;

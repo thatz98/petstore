@@ -1,6 +1,5 @@
 package com.example.petstore.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.*;
@@ -9,7 +8,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.example.petstore.models.Pet;
-import com.example.petstore.models.PetList;
+import com.example.petstore.datastore.PetList;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
