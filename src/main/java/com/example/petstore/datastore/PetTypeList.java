@@ -11,11 +11,18 @@ public class PetTypeList {
 
     private static PetTypeList ourInstance = new PetTypeList();
 
+    private  PetTypeList() {
+        this.addPetType(new PetType(1, "Dog"));
+        this.addPetType(new PetType(2, "Cat"));
+        this.addPetType(new PetType(3, "Bird"));
+        this.addPetType(new PetType(3, "Fish"));
+    }
+
     public static PetTypeList getInstance() {
         return ourInstance;
     }
 
-    public PetType addPet(PetType newPetType) {
+    public PetType addPetType(PetType newPetType) {
         Integer newId = petTypesList.size() + 1;
         newPetType.setPetTypeId(newId);
         petTypesList.add(newPetType);

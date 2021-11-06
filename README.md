@@ -119,3 +119,41 @@ Open [http://localhost:16686/](http://localhost:16686/) to see the traces. Mind 
 ## Deploying Application
 
 To deploy the demo app on a docker-compose please visit [./deploy](https://github.com/rasika/petstore/tree/master/deploy)
+
+## Testing the API with CURL
+
+### Pet Types
+
+Retrieve all the existing pet types
+
+    curl --location --request GET 'http://localhost:8080/api/petTypes'
+
+Add a new pet type
+
+    curl --location --request POST 'http://localhost:8080/api/petTypes/add' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"Dog"}'
+
+Update existing pet type
+
+    curl --location --request PUT 'http://localhost:8080/api/petTypes/update/{{petId}}' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"cat"}'
+
+Delete existing pet type
+
+    curl --location --request DELETE 'http://localhost:8080/api/petTypes/delete/{{petId}}'
+
+### Pets
+
+Retrieve all the existing pets
+
+    curl --location --request GET 'http://localhost:8080/api/pets'
+
+Add a new pet
+
+    curl --location --request POST 'http://localhost:8080/api/pets/add' --header 'Content-Type: application/json' --data-raw '{"petName": "Hudsy","petAge": 3,"petTypeId": 1}'
+
+Update existing pet
+
+    curl --location --request PUT 'http://localhost:8080/api/pets/update/{{petId}}' --header 'Content-Type: application/json' --data-raw '{"petName": "Tommy"}'
+
+Delete existing pet
+
+    curl --location --request DELETE 'http://localhost:8080/api/pets/delete/{{petId}}'

@@ -1,6 +1,7 @@
 package com.example.petstore.datastore;
 
 import com.example.petstore.models.Pet;
+import com.example.petstore.models.PetType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,13 @@ public class PetList {
     private List<Pet> petsList = new ArrayList<Pet>();
 
     private static PetList ourInstance = new PetList();
+
+    private  PetList() {
+        this.addPet(new Pet(1, new PetType(1, "Dog"), "Scooby", 7));
+        this.addPet(new Pet(2, new PetType(2, "Cat"), "Kitty", 4));
+        this.addPet(new Pet(3, new PetType(3, "Bird"), "Peththappu", 2));
+        this.addPet(new Pet(4, new PetType(4, "Ksusma"), "Moli", 1));
+    }
 
     public static PetList getInstance() {
         return ourInstance;

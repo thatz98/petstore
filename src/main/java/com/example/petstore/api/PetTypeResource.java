@@ -14,7 +14,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 
-@Path("/v1/petTypes")
+@Path("/api/petTypes")
 @Produces("application/json")
 public class PetTypeResource {
 
@@ -23,7 +23,7 @@ public class PetTypeResource {
     @APIResponses(value = {
             @APIResponse(responseCode = "200", description = "All Pet Types", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))) })
     @GET
-    public Response getPets() {
+    public Response getPetTypes() {
         List<PetType> petTypes = petTypesList.getPetTypesList();
 
         return Response.ok(petTypes).build();
@@ -34,7 +34,7 @@ public class PetTypeResource {
             @APIResponse(responseCode = "404", description = "No Pet Type found for the id.") })
     @GET
     @Path("{petTypeId}")
-    public Response getPet(@PathParam("petTypeId") Integer petTypeId) {
+    public Response getPetType(@PathParam("petTypeId") Integer petTypeId) {
 
         PetType petType = petTypesList.getPetTypeById(petTypeId);
 
@@ -52,8 +52,8 @@ public class PetTypeResource {
     @POST
     @Path("add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addPet(PetType newPetType) {
-        PetType addedPetType = petTypesList.addPet(newPetType);
+    public Response addPetType(PetType newPetType) {
+        PetType addedPetType = petTypesList.addPetType(newPetType);
         return Response.ok(addedPetType).build();
     }
 
@@ -63,7 +63,7 @@ public class PetTypeResource {
     @PUT
     @Path("update/{petTypeId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updatePet(PetType toBeUpdated, @PathParam("petTypeId") Integer petTypeId) {
+    public Response updatePetType(PetType toBeUpdated, @PathParam("petTypeId") Integer petTypeId) {
 
         if(!petTypesList.petTypeExists(petTypeId)){
             return Response.status(Status.NOT_FOUND).build();
@@ -80,7 +80,7 @@ public class PetTypeResource {
     @DELETE
     @Path("delete/{petTypeId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updatePet(@PathParam("petTypeId") Integer petTypeId) {
+    public Response deletePetType(@PathParam("petTypeId") Integer petTypeId) {
 
         if(!petTypesList.petTypeExists(petTypeId)){
             return Response.status(Status.NOT_FOUND).build();
