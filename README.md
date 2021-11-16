@@ -61,6 +61,59 @@ You can then execute your native executable with:
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
 
+
+## Deploying Application
+
+To deploy the demo app on a docker-compose please visit [./deploy](https://github.com/rasika/petstore/tree/master/deploy)
+
+## Testing the API with CURL
+
+### Pet Types
+
+Retrieve all the existing pet types
+
+    curl --location --request GET 'http://localhost:8080/api/petTypes'
+
+Add a new pet type
+
+    curl --location --request POST 'http://localhost:8080/api/petTypes/add' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"Dog"}'
+
+Update existing pet type
+
+    curl --location --request PUT 'http://localhost:8080/api/petTypes/update/{{petId}}' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"cat"}'
+
+Delete existing pet type
+
+    curl --location --request DELETE 'http://localhost:8080/api/petTypes/delete/{{petId}}'
+
+### Pets
+
+Retrieve all the existing pets
+
+    curl --location --request GET 'http://localhost:8080/api/pets'
+
+Add a new pet
+
+    curl --location --request POST 'http://localhost:8080/api/pets/add' --header 'Content-Type: application/json' --data-raw '{"petName": "Hudsy","petAge": 3,"petTypeId": 1}'
+
+Update existing pet
+
+    curl --location --request PUT 'http://localhost:8080/api/pets/update/{{petId}}' --header 'Content-Type: application/json' --data-raw '{"petName": "Tommy"}'
+
+Delete existing pet
+
+    curl --location --request DELETE 'http://localhost:8080/api/pets/delete/{{petId}}'
+
+## Run JUnit test suite
+
+You can execute the test suite for the API with:
+
+    ./gradlew test
+
+Then you can get the test report as an HTML page with the following command:
+
+    start ./build/reports/tests/test/index.html
+
 ## Specification examples
 
 By default, there is always the creation of a JAX-RS application class to define the path on which the JAX-RS endpoints are available.
@@ -115,55 +168,3 @@ Allow the participation in distributed tracing of your requests through various 
 
 To show this capability download [Jaeger](https://www.jaegertracing.io/download/#binaries) and run ```./jaeger-all-in-one```.
 Open [http://localhost:16686/](http://localhost:16686/) to see the traces. Mind that you have to access your demo app endpoint for any traces to show on Jaeger UI.
-
-## Deploying Application
-
-To deploy the demo app on a docker-compose please visit [./deploy](https://github.com/rasika/petstore/tree/master/deploy)
-
-## Testing the API with CURL
-
-### Pet Types
-
-Retrieve all the existing pet types
-
-    curl --location --request GET 'http://localhost:8080/api/petTypes'
-
-Add a new pet type
-
-    curl --location --request POST 'http://localhost:8080/api/petTypes/add' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"Dog"}'
-
-Update existing pet type
-
-    curl --location --request PUT 'http://localhost:8080/api/petTypes/update/{{petId}}' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"cat"}'
-
-Delete existing pet type
-
-    curl --location --request DELETE 'http://localhost:8080/api/petTypes/delete/{{petId}}'
-
-### Pets
-
-Retrieve all the existing pets
-
-    curl --location --request GET 'http://localhost:8080/api/pets'
-
-Add a new pet
-
-    curl --location --request POST 'http://localhost:8080/api/pets/add' --header 'Content-Type: application/json' --data-raw '{"petName": "Hudsy","petAge": 3,"petTypeId": 1}'
-
-Update existing pet
-
-    curl --location --request PUT 'http://localhost:8080/api/pets/update/{{petId}}' --header 'Content-Type: application/json' --data-raw '{"petName": "Tommy"}'
-
-Delete existing pet
-
-    curl --location --request DELETE 'http://localhost:8080/api/pets/delete/{{petId}}'
-
-## Run JUnit test suite
-
-You can execute the test suite for the API with:
-
-    ./gradlew test
-
-Then you can get the test report as an HTML page with the following command:
-
-    start ./build/reports/tests/test/index.html
