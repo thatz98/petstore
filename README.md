@@ -157,3 +157,13 @@ Update existing pet
 Delete existing pet
 
     curl --location --request DELETE 'http://localhost:8080/api/pets/delete/{{petId}}'
+
+## Run JUnit test suite
+
+You can execute the test suite for the API with:
+
+    ./gradlew test
+
+Then you can get the test report as an HTML page with the following command:
+
+    start ./build/reports/tests/test/index.html
