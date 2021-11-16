@@ -1,26 +1,25 @@
 package org.acme;
 
-import com.example.petstore.models.PetType;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.CoreMatchers.is;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.notNullValue;
 
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class PetResourceTest {
+public class PetTypeResourceTest {
 
 	@Test
     @Order(1)
-    public void testPetsRetrievalEndpointSuccess() {
+    public void testPetTypesRetrievalEndpointSuccess() {
         given()
-          .when().get("/api/pets")
+          .when().get("/api/petTypes")
           .then()
                 .assertThat()
                 .statusCode(200)
@@ -29,53 +28,50 @@ public class PetResourceTest {
 
     @Test
     @Order(2)
-    public void testPetsAddEndpointSuccess() {
+    public void testPetTypesAddEndpointSuccess() {
         given()
                 .header("Content-Type", "application/json")
-                .body("{\r\n    \"petName\": \"Dane\",\r\n    \"petAge\": 4,\r\n    \"petTypeId\": 1\r\n}")
-                .when().post("/api/pets/add")
+                .body("{\r\n    \"petTypeName\": \"Reptile\"    \r\n}")
+                .when().post("/api/petTypes/add")
                 .then()
                     .assertThat()
                     .statusCode(200)
-                    .body("petId", notNullValue())
-                    .body("petAge", equalTo(4))
-                    .body("petName", equalTo("Dane"))
-                    .body("petType", notNullValue());
+                    .body("petTypeId", notNullValue())
+                    .body("petTypeName", equalTo("Reptile"));
     }
 
     @Test
     @Order(3)
-    public void testPetsUpdateEndpointSuccess() {
+    public void testPetTypesUpdateEndpointSuccess() {
         given()
                 .header("Content-Type", "application/json")
-                .body("{\r\n    \"petName\": \"Woofy\"  \r\n}")
-                .when().put("/api/pets/update/4")
+                .body("{\r\n    \"petTypeName\": \"Mammoth\"  \r\n}")
+                .when().put("/api/petTypes/update/5")
                 .then()
                     .assertThat()
                     .statusCode(200)
-                    .body("petId", notNullValue())
-                    .body("petName", equalTo("Woofy"))
-                    .body("petType", notNullValue());
+                    .body("petTypeName", equalTo("Mammoth"))
+                    .body("petTypeId", notNullValue());
     }
 
     @Test
     @Order(4)
-    public void testPetsUpdateEndpointFailure() {
+    public void testPetTypesUpdateEndpointFailure() {
         given()
                 .header("Content-Type", "application/json")
-                .body("{\r\n    \"petAge\": \"abc\"  \r\n}")
-                .when().put("/api/pets/update/4")
+                .body("{\r\n    \"petTypeName\": \"Mammoth\"  \r\n}")
+                .when().put("/api/petTypes/update/1234")
                 .then()
                     .assertThat()
-                    .statusCode(400);
+                    .statusCode(404);
     }
 
     @Test
     @Order(5)
-    public void testPetsDeleteEndpointSuccess() {
+    public void testPetTypesDeleteEndpointSuccess() {
         given()
                 .header("Content-Type", "application/json")
-                .when().delete("/api/pets/delete/4")
+                .when().delete("/api/petTypes/delete/5")
                 .then()
                     .assertThat()
                     .statusCode(200);
@@ -83,10 +79,10 @@ public class PetResourceTest {
 
     @Test
     @Order(6)
-    public void testPetsDeleteEndpointFailure() {
+    public void testPetTypesDeleteEndpointFailure() {
         given()
                 .header("Content-Type", "application/json")
-                .when().delete("/api/pets/delete/4")
+                .when().delete("/api/petTypes/delete/5")
                 .then()
                     .assertThat()
                     .statusCode(404);

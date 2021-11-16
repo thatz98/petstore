@@ -15,7 +15,7 @@ public class PetTypeList {
         this.addPetType(new PetType(1, "Dog"));
         this.addPetType(new PetType(2, "Cat"));
         this.addPetType(new PetType(3, "Bird"));
-        this.addPetType(new PetType(3, "Fish"));
+        this.addPetType(new PetType(4, "Fish"));
     }
 
     public static PetTypeList getInstance() {
