@@ -47,6 +47,23 @@ public class PetTypeResource {
     }
 
     @APIResponses(value = {
+            @APIResponse(responseCode = "200", description = "Pet Type for name", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))),
+            @APIResponse(responseCode = "404", description = "No Pet Type found for the name.") })
+    @GET
+    @Path("searchByName/{petTypeName}")
+    public Response getPetType(@PathParam("petTypeName") String petTypeName) {
+
+        PetType petType = petTypesList.getPetTypeByName(petTypeName);
+
+        if(petType == null){
+            return Response.status(Status.NOT_FOUND).build();
+        }
+
+        return Response.ok(petType).build();
+
+    }
+
+    @APIResponses(value = {
             @APIResponse(responseCode = "200", description = "Newly added pet", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(ref = "Pet"))),
             @APIResponse(responseCode = "404", description = "No Pet found for the id.") })
     @POST

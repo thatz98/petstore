@@ -44,6 +44,26 @@ public class PetList {
         return null;
     }
 
+    public Pet getPetByName(String name) {
+        for (Pet pet : petsList) {
+            if (pet.getPetName().equals(name)) {
+                return pet;
+            }
+        }
+
+        return null;
+    }
+
+    public Pet getPetByAge(Integer age) {
+        for (Pet pet : petsList) {
+            if (pet.getPetAge().equals(age)) {
+                return pet;
+            }
+        }
+
+        return null;
+    }
+
     public boolean petExists(Integer id) {
         for (Pet pet : petsList) {
             if (pet.getPetId().equals(id)) {

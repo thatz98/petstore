@@ -43,6 +43,16 @@ public class PetTypeList {
         return null;
     }
 
+    public PetType getPetTypeByName(String name) {
+        for (PetType petType : petTypesList) {
+            if (petType.getPetTypeName().equals(name)) {
+                return petType;
+            }
+        }
+
+        return null;
+    }
+
     public boolean petTypeExists(Integer id) {
         for (PetType petType : petTypesList) {
             if (petType.getPetTypeId().equals(id)) {
