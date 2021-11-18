@@ -74,6 +74,14 @@ Retrieve all the existing pet types
 
     curl --location --request GET 'http://localhost:8080/api/petTypes'
 
+Get existing pet types by ID
+
+    curl --location --request GET 'http://localhost:8080/api/petTypes/1'
+
+Search for existing pet types by name
+
+    curl --location --request GET 'http://localhost:8080/api/petTypes/searchByName/Dog'
+
 Add a new pet type
 
     curl --location --request POST 'http://localhost:8080/api/petTypes/add' --header 'Content-Type: application/json' --data-raw '{"petTypeName":"Dog"}'
@@ -91,6 +99,18 @@ Delete existing pet type
 Retrieve all the existing pets
 
     curl --location --request GET 'http://localhost:8080/api/pets'
+
+Get existing pet by ID
+
+    curl --location --request GET 'http://localhost:8080/api/pets/1'
+
+Search for existing pets by name
+
+    curl --location --request GET 'http://localhost:8080/api/pets/searchByName/Scooby'
+
+Search for existing pets by age
+
+    curl --location --request GET 'http://localhost:8080/api/pets/searchByAge/2'
 
 Add a new pet
 
